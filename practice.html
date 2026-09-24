@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ZubEdu Practice</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f8ff;color:#222}
+header{background:#0878d1;color:white;padding:30px;text-align:center}
+main{max-width:800px;margin:30px auto;background:white;padding:25px;border-radius:15px}
+.question{padding:18px;margin:15px 0;background:#eef6ff;border-radius:10px}
+label{display:block;margin:10px}
+button{background:#0878d1;color:white;border:0;padding:12px 25px;border-radius:8px}
+#result{font-size:22px;font-weight:bold;margin-top:20px}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>🎓 ZubEdu</h1>
+<p>Practice Test</p>
+</header>
+
+<main>
+<h2 id="title">Practice Test</h2>
+
+<div id="quiz"></div>
+
+<button onclick="check()">Submit Test</button>
+
+<div id="result"></div>
+</main>
+
+<script>
+
+let params=new URLSearchParams(location.search);
+let cls=params.get("class")||"7";
+let subject=params.get("subject")||"Mathematics";
+let chapter=params.get("chapter")||"Integers";
+
+document.getElementById("title").innerText=
+"Class "+cls+" • "+subject+" • "+chapter;
+
+let questions=[
+{
+q:"What is 5 + (-3)?",
+o:["2","8","-2","-8"],
+a:0
+},
+{
+q:"Which is greater?",
+o:["-5","-2","-10","-8"],
+a:1
+},
+{
+q:"What is (-4) - 3?",
+o:["12","-12","7","-7"],
+a:3
+},
+{
+q:"What is 10 - 15?",
+o:["5","-5","25","-25"],
+a:1
+},
+{
+q:"Which of these is an integer?",
+o:["2.5","1/2","-7","3.4"],
+a:2
+}
+];
+
+let quiz=document.getElementById("quiz");
+
+questions.forEach(function(item,i){
+
+let html="<div class='question'>";
+html+="<b>Q"+(i+1)+". "+item.q+"</b>";
+
+item.o.forEach(function(option,j){
+html+="<label>";
+html+="<input type='radio' name='q"+i+"' value='"+j+"'> ";
+html+=option;
+html+="</label>";
+});
+
+html+="</div>";
+
+quiz.innerHTML+=html;
+});
+
+function check(){
+
+let score=0;
+
+questions.forEach(function(item,i){
+
+let selected=document.querySelector(
+"input[name='q"+i+"']:checked"
+);
+
+if(selected && Number(selected.value)===item.a){
+score++;
+}
+
+});
+
+document.getElementById("result").innerText=
+"🏆 Your Score: "+score+"/5";
+
+localStorage.setItem("practiceScore",score);
+
+}
+
+</script>
+
+</body>
+</html>

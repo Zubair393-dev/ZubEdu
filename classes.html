@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ZubEdu Classes</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f4f8ff;
+    color:#17324d;
+}
+
+header{
+    background:#1565c0;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+.container{
+    max-width:900px;
+    margin:auto;
+    padding:25px;
+}
+
+h2{
+    color:#1565c0;
+}
+
+select{
+    width:100%;
+    padding:14px;
+    font-size:17px;
+    border-radius:10px;
+    border:1px solid #ccc;
+    margin-bottom:20px;
+}
+
+.subjects{
+    display:grid;
+    gap:15px;
+}
+
+.card{
+    background:white;
+    padding:22px;
+    border-radius:15px;
+    box-shadow:0 3px 10px #ddd;
+    cursor:pointer;
+}
+
+.card:hover{
+    transform:scale(1.02);
+}
+
+.card h3{
+    color:#1565c0;
+    margin:0 0 8px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📚 ZubEdu</h1>
+<p>Prepare Smart. Score Better.</p>
+</header>
+
+<div class="container">
+
+<h2>🎓 Select Your Class</h2>
+
+<select id="classSelect" onchange="showSubjects()">
+<option value="">-- Select Class --</option>
+<option value="7">Class 7</option>
+<option value="8">Class 8</option>
+<option value="9">Class 9</option>
+<option value="10">Class 10</option>
+</select>
+
+<div id="subjects" class="subjects"></div>
+
+</div>
+
+<script>
+
+function showSubjects(){
+
+let cls = document.getElementById("classSelect").value;
+let box = document.getElementById("subjects");
+
+if(!cls){
+box.innerHTML="";
+return;
+}
+
+let subjects = [
+["📐","Mathematics","Mathematics"],
+["🔬","Science","Science"],
+["📖","English","English"],
+["🌍","Social Science","Social Science"],
+["📝","Hindi","Hindi"]
+];
+
+box.innerHTML = "";
+
+subjects.forEach(function(s){
+
+box.innerHTML += `
+<div class="card" onclick="openSubject('${s[2]}')">
+<h3>${s[0]} ${s[1]}</h3>
+<p>Chapters • Questions • Practice • PYQ</p>
+</div>
+`;
+
+});
+
+}
+
+function openSubject(subject){
+    let cls = document.getElementById("classSelect").value;
+
+    window.location.href =
+    "subject.html?class=" + cls +
+    "&subject=" + encodeURIComponent(subject);
+}
+
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Class 10 SST - ZubEdu</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f8ff;color:#17324d}
+header{background:#1565c0;color:white;text-align:center;padding:25px}
+main{max-width:850px;margin:auto;padding:20px}
+.card{background:white;padding:18px;margin:12px 0;border-radius:12px;box-shadow:0 2px 8px #ddd}
+h2{color:#1565c0}
+</style>
+</head>
+<body>
+
+<header><h1>ZubEdu</h1><p>Class 10 Social Science</p></header>
+
+<main id="sst"></main>
+
+<script>
+let data=[
+["📜 History","The Rise of Nationalism in Europe","Nationalism in India","The Making of a Global World","Print Culture and the Modern World"],
+["🌍 Geography","Resources and Development","Forest and Wildlife Resources","Water Resources","Agriculture","Minerals and Energy Resources","Manufacturing Industries","Lifelines of National Economy"],
+["🏛️ Political Science","Power Sharing","Federalism","Gender, Religion and Caste","Political Parties","Outcomes of Democracy"],
+["💰 Economics","Development","Sectors of the Indian Economy","Money and Credit","Globalisation and the Indian Economy","Consumer Rights"]
+];
+
+let html="";
+data.forEach(x=>{
+html+="<div class='card'><h2>"+x[0]+"</h2>";
+for(let i=1;i<x.length;i++) html+="<p>📖 "+x[i]+"</p>";
+html+="</div>";
+});
+document.getElementById("sst").innerHTML=html;
+</script>
+
+</body>
+</html>

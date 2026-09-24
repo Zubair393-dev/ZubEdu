@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Class 10 Subjects - ZubEdu</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f9ff;
+            color: #17324d;
+        }
+
+        header {
+            background: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px #dce8f5;
+        }
+
+        .logo {
+            font-size: 30px;
+            font-weight: bold;
+            color: #1677d2;
+        }
+
+        .home {
+            text-decoration: none;
+            color: #1677d2;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #123c68;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #607d98;
+            margin-bottom: 35px;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .subject {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 3px 15px #dce8f5;
+        }
+
+        .subject h2 {
+            color: #1677d2;
+        }
+
+        .subject button {
+            background: #18aee0;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">ZubEdu</div>
+    <a class="home" href="index.html">Home</a>
+</header>
+
+<div class="container">
+
+    <h1>Class 10 Subjects</h1>
+
+    <p class="subtitle">
+        Select a subject to practice Previous Year Questions
+    </p>
+
+    <div class="subjects">
+
+        <div class="subject">
+            <h2>📐 Mathematics</h2>
+            <p>Class 10 Maths PYQ</p>
+            <button onclick="window.location.href='class10-maths.html'">Open</button>
+        </div>
+            <div class="subject">
+                <h2>🔬 Science</h2>
+                <p>Class 10 Science PYQ</p>
+                <button onclick="window.location.href='class10-science.html'">Open</button>
+            </div>
+
+        <div class="subject">
+            <h2>📖 English</h2>
+            <p>Class 10 English PYQ</p>
+            <button onclick="window.location.href='class10-english.html'">Open</button>
+
+        <div class="subject">
+            <h2>🌍 Social Science</h2>
+            <p>Class 10 SST PYQ</p>
+            <button onclick="window.location.href='class10-sst.html'">Open</button>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

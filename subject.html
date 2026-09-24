@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>ZubEdu - PYQ</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#f4f9ff;
+    color:#123;
+}
+header{
+    background:linear-gradient(135deg,#0878d1,#0056a6);
+    color:white;
+    padding:30px;
+    text-align:center;
+}
+.container{
+    max-width:800px;
+    margin:30px auto;
+    padding:20px;
+}
+.card{
+    background:white;
+    padding:20px;
+    margin:15px 0;
+    border-radius:12px;
+    box-shadow:0 3px 10px #ccc;
+}
+.answer{
+    color:#0878d1;
+    font-weight:bold;
+}
+button{
+    background:#0878d1;
+    color:white;
+    border:0;
+    padding:10px 18px;
+    border-radius:7px;
+    cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>📚 ZubEdu PYQ</h1>
+<p id="info">Previous Year Questions</p>
+</header>
+
+<div class="container">
+
+<h2>Important PYQ Questions</h2>
+
+<div id="questions"></div>
+
+<br>
+<button onclick="history.back()">⬅ Back</button>
+
+</div>
+
+<script>
+
+const p = new URLSearchParams(location.search);
+
+const cls = p.get("class") || "7";
+const subject = p.get("subject") || "Mathematics";
+const chapter = p.get("chapter") || "General";
+
+document.getElementById("info").innerText =
+"Class " + cls + " • " + subject + " • " + chapter;
+
+const questions = [
+"Define the main concept of " + chapter + ".",
+"Write an important example related to " + chapter + ".",
+"Solve one basic question from " + chapter + ".",
+"Explain the important rule/formula of " + chapter + ".",
+"Write one difference or key point from " + chapter + "."
+];
+
+let html = "";
+
+questions.forEach(function(q,i){
+
+html += `
+<div class="card">
+<h3>Q${i+1}. ${q}</h3>
+<p class="answer">Answer: Practice this question carefully.</p>
+</div>
+`;
+
+});
+
+document.getElementById("questions").innerHTML = html;
+
+</script>
+
+</body>
+</html>

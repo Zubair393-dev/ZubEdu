@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZubEdu - Create Account</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #eaf7ff, #ffffff);
+}
+
+.signup-box {
+    width: 390px;
+    background: white;
+    padding: 35px;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+}
+
+.logo {
+    text-align: center;
+    font-size: 34px;
+    font-weight: bold;
+    color: #1769aa;
+    margin-bottom: 8px;
+}
+
+.tagline {
+    text-align: center;
+    color: #2196d3;
+    margin-bottom: 25px;
+}
+
+h2 {
+    text-align: center;
+    color: #222;
+    margin-bottom: 22px;
+}
+
+input, select {
+    width: 100%;
+    padding: 13px;
+    margin-bottom: 14px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 15px;
+}
+
+button {
+    width: 100%;
+    padding: 13px;
+    border: none;
+    border-radius: 8px;
+    background: #21a9d8;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1769aa;
+}
+
+.login {
+    text-align: center;
+    margin-top: 18px;
+    color: #666;
+}
+
+.login a {
+    color: #2196d3;
+    text-decoration: none;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="signup-box">
+
+    <div class="logo">ZubEdu</div>
+
+    <div class="tagline">Prepare Smart. Score Better.</div>
+
+    <h2>Create Account</h2>
+
+    <input type="text" placeholder="Enter Full Name">
+
+    <input type="email" placeholder="Enter Email">
+
+    <input type="password" placeholder="Create Password">
+
+    <select>
+        <option>Select Your Class</option>
+        <option>Class 7</option>
+        <option>Class 8</option>
+        <option>Class 9</option>
+        <option>Class 10</option>
+    </select>
+
+    <button onclick="createAccount()">Create Account</button>
+
+    <div class="login">
+        Already have an account?
+        <a href="login.html">Login</a>
+    </div>
+
+</div>
+
+<script>
+function createAccount() {
+    let inputs = document.querySelectorAll("input");
+let name = inputs[0].value.trim();
+let email = inputs[1].value.trim();
+let password = inputs[2].value.trim();
+let studentClass = document.querySelector("select").value;
+
+  if (!name || !email || !password || !studentClass) {
+    alert("Please fill all details.");
+    return;
+  }
+
+  localStorage.setItem("zubeduName", name);
+  localStorage.setItem("zubeduEmail", email);
+  localStorage.setItem("zubeduPassword", password);
+  localStorage.setItem("zubeduClass", studentClass);
+
+  alert("Account created successfully! 🎉");
+  window.location.href = "login.html";
+}
+</script>
+
+</body>
+</html>

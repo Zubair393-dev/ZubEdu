@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Friends Challenge - ZubEdu</title>
+
+<style>
+body{
+    font-family:Arial;
+    margin:0;
+    background:#f4f8ff;
+    color:#17324d;
+}
+
+header{
+    background:#1565c0;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+main{
+    max-width:750px;
+    margin:auto;
+    padding:25px;
+}
+
+.card{
+    background:white;
+    padding:20px;
+    margin:15px 0;
+    border-radius:14px;
+    box-shadow:0 2px 8px #ddd;
+}
+
+input{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+    box-sizing:border-box;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+button{
+    background:#1565c0;
+    color:white;
+    border:0;
+    padding:12px 20px;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:15px;
+    margin-top:10px;
+}
+
+.option{
+    display:block;
+    background:#f4f8ff;
+    padding:12px;
+    margin:8px 0;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#quiz,#result{
+    display:none;
+}
+
+.score{
+    font-size:22px;
+    font-weight:bold;
+    color:#1565c0;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ZubEdu</h1>
+<p>🏆 2 Friends Study Challenge</p>
+</header>
+
+<main>
+
+<div class="card" id="start">
+
+<h2>👥 Challenge Your Friend</h2>
+
+<input id="player1" placeholder="Friend 1 Name">
+
+<input id="player2" placeholder="Friend 2 Name">
+
+<button onclick="startChallenge()">🚀 Start Challenge</button>
+
+</div>
+
+
+<div class="card" id="quiz">
+
+<h2 id="questionNumber"></h2>
+
+<h3 id="question"></h3>
+
+<div id="options"></div>
+
+<button onclick="nextQuestion()">Next ➡️</button>
+
+</div>
+
+
+<div class="card" id="result">
+
+<h2>🏆 Challenge Result</h2>
+
+<p id="winner"></p>
+
+<p id="scores" class="score"></p>
+
+<button onclick="location.reload()">🔄 Play Again</button>
+
+</div>
+
+</main>
+
+
+<script>
+
+let p1="";
+let p2="";
+let current=0;
+
+let score1=0;
+let score2=0;
+
+let questions=[
+
+{
+q:"What is the HCF of 24 and 36?",
+options:["6","12","18","24"],
+answer:1
+},
+
+{
+q:"What is Ohm's Law?",
+options:["V = IR","V = I/R","R = VI","I = VR"],
+answer:0
+},
+
+{
+q:"What is the square of 5?",
+options:["10","15","20","25"],
+answer:3
+},
+
+{
+q:"Photosynthesis mainly occurs in which part of a plant?",
+options:["Roots","Leaves","Flowers","Stem"],
+answer:1
+},
+
+{
+q:"What is the value of sin 30°?",
+options:["0","1/2","1","2"],
+answer:1
+}
+
+];
+
+
+function startChallenge(){
+
+p1=document.getElementById("player1").value.trim();
+p2=document.getElementById("player2").value.trim();
+
+if(p1==="" || p2===""){
+alert("Please enter both friends' names.");
+return;
+}
+
+document.getElementById("start").style.display="none";
+document.getElementById("quiz").style.display="block";
+
+showQuestion();
+
+}
+
+
+function showQuestion(){
+
+let q=questions[current];
+
+document.getElementById("questionNumber").innerText=
+"Question "+(current+1)+" of "+questions.length;
+
+document.getElementById("question").innerText=q.q;
+
+let html="";
+
+q.options.forEach(function(option,index){
+
+html+=`
+<label class="option">
+<input type="radio" name="answer" value="${index}">
+${option}
+</label>
+`;
+
+});
+
+document.getElementById("options").innerHTML=html;
+
+}
+
+
+function nextQuestion(){
+
+let selected=document.querySelector('input[name="answer"]:checked');
+
+if(!selected){
+alert("Please select an answer.");
+return;
+}
+
+let answer=Number(selected.value);
+
+if(answer===questions[current].answer){
+
+if(current%2===0){
+score1++;
+}else{
+score2++;
+}
+
+}
+
+current++;
+
+if(current<questions.length){
+
+showQuestion();
+
+}else{
+
+showResult();
+
+}
+
+}
+
+
+function showResult(){
+
+document.getElementById("quiz").style.display="none";
+document.getElementById("result").style.display="block";
+
+document.getElementById("scores").innerText=
+p1+" : "+score1+" / 3   |   "+p2+" : "+score2+" / 2";
+localStorage.setItem("challengeScore", score1);
+if(score1>score2){
+
+document.getElementById("winner").innerText=
+"🏆 "+p1+" wins the challenge!";
+
+}else if(score2>score1){
+
+document.getElementById("winner").innerText=
+"🏆 "+p2+" wins the challenge!";
+
+}else{
+
+document.getElementById("winner").innerText=
+"🤝 It's a Draw!";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

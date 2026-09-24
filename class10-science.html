@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>ZubEdu Science</title>
+<style>
+body{font-family:Arial;margin:0;background:#f4f8ff;color:#17324d}
+header{background:#1565c0;color:white;text-align:center;padding:25px}
+main{max-width:850px;margin:auto;padding:20px}
+.card{background:white;margin:12px 0;padding:18px;border-radius:12px;box-shadow:0 2px 8px #ddd}
+.ans{background:#e8f2ff;padding:10px;border-radius:8px}
+</style>
+</head>
+<body>
+<header><h1>ZubEdu</h1><p>Class 10 Science</p></header>
+<main id="chapters"></main>
+
+<script>
+const data=[
+["Periodic Classification","What is a periodic table?","Arrangement of elements by atomic number."],
+["Chemical Reactions","What is a chemical reaction?","Formation of new substances."],
+["Acids, Bases and Salts","What is an acid?","A substance giving H+ ions in water."],
+["Metals and Non-metals","Name a highly reactive metal.","Potassium."],
+["Carbon and its Compounds","What is catenation?","Carbon bonding with other carbon atoms."],
+["Life Processes","What is photosynthesis?","Plants prepare food using sunlight."],
+["Control and Coordination","What is reflex action?","A quick automatic response."],
+["Reproduction","What is reproduction?","Production of new individuals."],
+["Heredity","What is heredity?","Transfer of traits from parents to offspring."],
+["Light","State the law of reflection.","Angle of incidence = angle of reflection."],
+["Human Eye","Which part controls light entering the eye?","Iris."],
+["Electricity","State Ohm's law.","V = IR."],
+["Magnetic Effects","What is an electromagnet?","A magnet produced by electric current."],
+["Our Environment","What is a food chain?","Transfer of food and energy between organisms."]
+];
+
+let x="";
+data.forEach((d,i)=>{
+x+=`<div class="card"><h2>${i+1}. ${d[0]}</h2>
+<p><b>Q:</b> ${d[1]}</p>
+<div class="ans"><b>Ans:</b> ${d[2]}</div></div>`;
+});
+document.getElementById("chapters").innerHTML=x;
+</script>
+</body>
+</html>

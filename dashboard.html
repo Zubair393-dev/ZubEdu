@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Student Dashboard - ZubEdu</title>
+
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:#f4f8ff;
+color:#17324d;
+}
+
+header{
+background:#1565c0;
+color:white;
+text-align:center;
+padding:25px;
+}
+
+main{
+max-width:900px;
+margin:auto;
+padding:25px;
+}
+
+.welcome,.card{
+background:white;
+padding:22px;
+margin:15px 0;
+border-radius:15px;
+box-shadow:0 2px 10px #ddd;
+}
+
+.grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px;
+}
+
+.card h2{
+color:#1565c0;
+}
+
+.number{
+font-size:32px;
+font-weight:bold;
+color:#1565c0;
+}
+
+button{
+background:#1565c0;
+color:white;
+border:0;
+padding:12px 20px;
+border-radius:8px;
+cursor:pointer;
+}
+
+@media(max-width:600px){
+.grid{
+grid-template-columns:1fr;
+}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>ZubEdu</h1>
+<p>🎓 Student Dashboard</p>
+</header>
+
+<main>
+
+<div class="welcome">
+<h2>👋 Welcome to ZubEdu!</h2>
+<p id="studentInfo"></p>
+<p>Track your preparation and keep improving.</p>
+</div>
+
+<div class="grid">
+
+<div class="card">
+<h2>📚 PYQ Progress</h2>
+<div class="number">0%</div>
+<p>Previous Year Questions completed</p>
+</div>
+
+<div class="card">
+<h2>🏆 Weekly Tests</h2>
+<div class="number" id="weeklyCount">0</div>
+<p>Tests completed</p>
+</div>
+
+<div class="card">
+<h2>🎯 Challenge Score</h2>
+<div class="number" id="challengeScore">0</div>
+<p>Friends Challenge points</p>
+</div>
+
+<div class="card">
+<h2>📅 90-Day Plan</h2>
+<div class="number">0%</div>
+<p>Study plan progress</p>
+</div>
+
+</div>
+
+<div class="card">
+<h2>📊 Latest Weekly Test</h2>
+<p id="latestScore">No test completed yet.</p>
+</div>
+
+<br>
+<div class="card">
+    <h2>🏆 Challenge Score</h2>
+    <p id="challengeScore">No challenge played yet</p>
+    </div>
+<button onclick="location.href='weekly-test.html'">
+📝 Take Weekly Test
+</button>
+
+</main>
+
+<script>
+
+let weeklyCompleted =
+localStorage.getItem("weeklyCompleted");
+
+
+let weeklyScore = localStorage.getItem("weeklyScore");
+
+let practiceScore = localStorage.getItem("practiceScore");
+
+if(practiceScore !== null){
+  document.getElementById("latestScore").innerText =
+  "🏆 Practice Score: " + practiceScore + "/5";
+}
+let challengeScore = localStorage.getItem("challengeScore");
+
+if(challengeScore !== null){
+document.getElementById("challengeScore").innerText =
+"🏆 Your Challenge Score: " + challengeScore;
+}
+if(weeklyCompleted){
+document.getElementById("weeklyCount").innerText = "1";
+}
+
+if(weeklyScore !== null || practiceScore !== null){
+
+let text = "";
+
+if(practiceScore !== null){
+  text += "🏆 Practice Score: " + practiceScore + "/5";
+}
+
+if(weeklyScore !== null){
+  text += " | Weekly Score: " + weeklyScore + "/5";
+}
+
+document.getElementById("latestScore").innerText = text;
+}
+     
+
+    let name = localStorage.getItem("zubeduName");
+    let studentClass = localStorage.getItem("zubeduClass");
+    
+    if(name){
+      document.getElementById("studentInfo").innerText =
+      "👨‍🎓 " + name + " | " + studentClass;
+    }
+    </script>
+</body>
+</html>
