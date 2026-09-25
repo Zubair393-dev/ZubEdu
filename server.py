@@ -49,7 +49,8 @@ Question:
 
         self.send_json({"error": "Invalid request"})
 
-server = ThreadingHTTPServer(("127.0.0.1", 8000), ZubEduHandler)
+PORT = int(os.environ.get("PORT", 8000))
+server = ThreadingHTTPServer(("0.0.0.0", PORT), ZubEduHandler)
 
 print("================================")
 print("ZubEdu AI Server Started")
