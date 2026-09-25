@@ -85,12 +85,23 @@ clearInterval(timer);
 
 let score=0;
 
-document.querySelectorAll("input:checked").forEach(function(x){
-score+=Number(x.value);
+let answers={
+q1:"12",
+q2:"1",
+q3:"1",
+q4:"1",
+q5:"1"
+};
+
+Object.keys(answers).forEach(function(q){
+let selected=document.querySelector('input[name="'+q+'"]:checked');
+
+if(selected && selected.value===answers[q]){
+score++;
+}
 });
 
-document.getElementById("result").innerText=
-"🏆 Your Score: "+score+"/5";
+document.getElementById("result").innerText="🏆 Your Score: "+score+"/5";
 
 localStorage.setItem("weeklyScore",score);
 localStorage.setItem("weeklyCompleted","1");
